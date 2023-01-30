@@ -23,7 +23,7 @@ namespace FileUploadAPI.Controllers.Tests
             base.Setup();
             if(testObj == null)
             {
-                testObj = new FileController();
+                testObj = new FileController(dbContextFactory);
             }
         }
 
@@ -51,6 +51,17 @@ namespace FileUploadAPI.Controllers.Tests
             Assert.IsTrue(actual.Id > 0);
         }
 
-
+        [TestMethod()]
+        public async Task DataIsAddedToCrdRecord()
+        {
+            var submission = new Submission() { Filename = "techtest_cdr.csv", UserId = 1, Data = GetFileContents(CSV_FILE) };
+            var result = await testObj.PostAsync(submission);
+            using (var db = dbContextFactory.CreateDbContext())
+            {
+                var actual = await db.CallRecords.ToListAsync();
+                Assert.IsInstanceOfType(actual, typeof(List<CallRecord>));
+            }
+           
+        }
     }
 }
