@@ -1,6 +1,7 @@
 ﻿using FileUploadAPI.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,21 @@ namespace FileUploadAPI.Controllers
     [ApiController]
     public class FileController : ControllerBase
     {
+        private readonly IDbContextFactory<FileUploadContext> contextFactory;
+
+        public FileController(IDbContextFactory<FileUploadContext> contextFactory)
+        {
+            this.contextFactory = contextFactory;
+        }
+
         [HttpPost()]
         public async Task<Submission> PostAsync(Submission submission)
         {
-            await Task.Delay(1);
+            using (var db = contextFactory.CreateDbContext())
+            {
+                var result = await db.Submissions.AddAsync(submission);
+                await db.SaveChangesAsync();
+            }
             return submission;
         }
     }
