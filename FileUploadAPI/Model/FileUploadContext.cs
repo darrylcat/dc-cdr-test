@@ -9,10 +9,10 @@ namespace FileUploadAPI.Model
     public class FileUploadContext : DbContext 
     {
         public DbSet<Submission> Submissions { get; set; }
+        public DbSet<CallRecord> CallRecords { get; set; }
 
         public FileUploadContext(DbContextOptions<FileUploadContext> options) : base(options)
         {
         }
-
     }
 }

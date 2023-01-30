@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using FileUploadAPITests.TestUtils;
 using FileUploadAPI.Model;
 using System.IO;
+using Microsoft.EntityFrameworkCore;
 
 namespace FileUploadAPI.Controllers.Tests
 {
