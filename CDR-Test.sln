@@ -9,9 +9,30 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileUploadAPI", "FileUploadAPI\FileUploadAPI.csproj", "{AD9D2614-198C-4D99-B63A-41AE1283764E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileUploadAPITests", "FileUploadAPITests\FileUploadAPITests.csproj", "{EA0D03E1-2992-48F4-9297-362F4ADA3F05}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD9D2614-198C-4D99-B63A-41AE1283764E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD9D2614-198C-4D99-B63A-41AE1283764E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD9D2614-198C-4D99-B63A-41AE1283764E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD9D2614-198C-4D99-B63A-41AE1283764E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA0D03E1-2992-48F4-9297-362F4ADA3F05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA0D03E1-2992-48F4-9297-362F4ADA3F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA0D03E1-2992-48F4-9297-362F4ADA3F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA0D03E1-2992-48F4-9297-362F4ADA3F05}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AD9D2614-198C-4D99-B63A-41AE1283764E} = {B6D6B324-791C-4152-A1F5-A05E3E8D4A33}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B1AB4DF6-6AF7-4C01-88EC-A42F6338CD89}
