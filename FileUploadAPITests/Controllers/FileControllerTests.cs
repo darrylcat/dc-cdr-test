@@ -37,7 +37,7 @@ namespace FileUploadAPI.Controllers.Tests
         [TestMethod()]
         public async Task PostAsyncTest()
         {
-            var expected = new Submission() { Filename = "techtest_cdr.csv" , UserId = 1, Data = GetFileContents(CSV_FILE) };
+            var expected = CreateSubmission();
             var actual = await testObj.PostAsync(expected);
             Assert.AreEqual(expected.Filename, actual.Filename);
             Assert.AreEqual(expected.Data, actual.Data);
@@ -47,7 +47,7 @@ namespace FileUploadAPI.Controllers.Tests
         [TestMethod()]
         public async Task IdFieldShouldBeSet()
         {
-            var expected = new Submission() { Filename = "techtest_cdr.csv", UserId = 1, Data = GetFileContents(CSV_FILE) };
+            var expected = CreateSubmission();
             var actual = await testObj.PostAsync(expected);
             Assert.IsTrue(actual.Id > 0);
         }
@@ -55,7 +55,7 @@ namespace FileUploadAPI.Controllers.Tests
         [TestMethod()]
         public async Task DataIsAddedToCrdRecord()
         {
-            var submission = new Submission() { Filename = "techtest_cdr.csv", UserId = 1, Data = GetFileContents(CSV_FILE) };
+            var submission = CreateSubmission();
             var result = await testObj.PostAsync(submission);
             using (var db = dbContextFactory.CreateDbContext())
             {
@@ -63,6 +63,25 @@ namespace FileUploadAPI.Controllers.Tests
                 Assert.IsInstanceOfType(actual, typeof(List<CallRecord>));
             }
            
+        }
+
+        [TestMethod()]
+        public async Task ImportDataHasCorrectNoOfRecords()
+        {
+            using (var db = dbContextFactory.CreateDbContext())
+            {
+                db.CallRecords.RemoveRange(db.CallRecords);
+                await db.SaveChangesAsync();
+                var submission = CreateSubmission();
+                var result = await testObj.PostAsync(submission);
+                var actual = db.CallRecords.Count();
+                Assert.AreEqual(FILE_LINES, actual);
+            }
+        }
+
+        private Submission CreateSubmission()
+        {
+            return new Submission() { Filename = "techtest_cdr.csv", UserId = 1, Data = GetFileContents(CSV_FILE) };
         }
     }
 }

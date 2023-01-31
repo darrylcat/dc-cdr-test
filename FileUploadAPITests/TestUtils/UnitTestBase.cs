@@ -14,6 +14,7 @@ namespace FileUploadAPITests.TestUtils
 
         protected static string CSV_FILE = @"C:\Users\darryl.catchpol\source\repos\CDR-Test\FileUploadAPITests\TestData\techtest_cdr.csv";
         protected static IDbContextFactory<FileUploadContext> dbContextFactory { get; set; }
+        protected static int FILE_LINES = 13036;
 
         public virtual void Setup()
         {
