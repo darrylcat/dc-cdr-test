@@ -1,4 +1,5 @@
-﻿using FileUploadAPI.Model;
+﻿using FileUploadAPI.Extensions;
+using FileUploadAPI.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -45,10 +46,11 @@ namespace FileUploadAPI.Controllers
                         {
                             var callRecord = new CallRecord()
                             {
+                                SubmissionId = submission.Id,
                                 CallerId = fields[0],
                                 Recipient = fields[1],
-                                CallDate = DateTime.Parse(fields[2]),
-                                CallEnd = DateTime.Parse(fields[3]),
+                                CallDate = fields[2].ShortDate(),
+                                CallEnd = fields[3].ShortTime(),
                                 Duration = int.Parse(fields[4]),
                                 Cost = decimal.Parse(fields[5]),
                                 Reference = fields[6],
