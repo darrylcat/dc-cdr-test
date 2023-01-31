@@ -52,7 +52,7 @@ namespace FileUploadAPI.Controllers
                                 CallDate = fields[2].ShortDate(),
                                 CallEnd = fields[3].ShortTime(),
                                 Duration = int.Parse(fields[4]),
-                                Cost = decimal.Parse(fields[5]),
+                                Cost = fields[5].ThreeDecimalPlaces(),
                                 Reference = fields[6],
                                 Currency = fields[7]
                             };
