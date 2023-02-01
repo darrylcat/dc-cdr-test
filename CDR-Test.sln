@@ -9,9 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileUploadAPI", "FileUploadAPI\FileUploadAPI.csproj", "{AD9D2614-198C-4D99-B63A-41AE1283764E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileUploadAPI", "FileUploadAPI\FileUploadAPI.csproj", "{AD9D2614-198C-4D99-B63A-41AE1283764E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileUploadAPITests", "FileUploadAPITests\FileUploadAPITests.csproj", "{EA0D03E1-2992-48F4-9297-362F4ADA3F05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileUploadAPITests", "FileUploadAPITests\FileUploadAPITests.csproj", "{EA0D03E1-2992-48F4-9297-362F4ADA3F05}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportingApi", "ReportingApi\ReportingApi.csproj", "{FDCE8FD1-2DEF-48E2-9FD8-5AF83FA9A42B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportingApiTests3", "ReportingApiTests3\ReportingApiTests3.csproj", "{346FADB0-73CC-49B2-8D63-DAE2D7923400}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{EA0D03E1-2992-48F4-9297-362F4ADA3F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA0D03E1-2992-48F4-9297-362F4ADA3F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA0D03E1-2992-48F4-9297-362F4ADA3F05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDCE8FD1-2DEF-48E2-9FD8-5AF83FA9A42B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDCE8FD1-2DEF-48E2-9FD8-5AF83FA9A42B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDCE8FD1-2DEF-48E2-9FD8-5AF83FA9A42B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDCE8FD1-2DEF-48E2-9FD8-5AF83FA9A42B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{346FADB0-73CC-49B2-8D63-DAE2D7923400}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{346FADB0-73CC-49B2-8D63-DAE2D7923400}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{346FADB0-73CC-49B2-8D63-DAE2D7923400}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{346FADB0-73CC-49B2-8D63-DAE2D7923400}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

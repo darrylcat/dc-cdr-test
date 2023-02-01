@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FileUploadAPI.Model
+namespace ReportingApi.Models.Database
 {
     public class CallRecord
     {
