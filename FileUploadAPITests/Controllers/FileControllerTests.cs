@@ -24,7 +24,7 @@ namespace FileUploadAPI.Controllers.Tests
             base.Setup();
             if(testObj == null)
             {
-                testObj = new FileController(dbContextFactory);
+                testObj = new FileController(dbContextFactory, WebHostEnvironment);
             }
         }
 
@@ -37,26 +37,24 @@ namespace FileUploadAPI.Controllers.Tests
         [TestMethod()]
         public async Task PostAsyncTest()
         {
-            var expected = CreateSubmission();
-            var actual = await testObj.PostAsync(expected);
-            Assert.AreEqual(expected.Filename, actual.Filename);
-            Assert.AreEqual(expected.Data, actual.Data);
-            Assert.AreEqual(expected.UserId, actual.UserId);
+            var formFile = GetFileForm();
+            var actual = await testObj.PostAsync(formFile);
+            Assert.AreEqual(formFile.FileName, actual.Filename);
         }
 
         [TestMethod()]
         public async Task IdFieldShouldBeSet()
         {
-            var expected = CreateSubmission();
-            var actual = await testObj.PostAsync(expected);
+            var formFile = GetFileForm();
+            var actual = await testObj.PostAsync(formFile);
             Assert.IsTrue(actual.Id > 0);
         }
 
         [TestMethod()]
         public async Task DataIsAddedToCrdRecord()
         {
-            var submission = CreateSubmission();
-            var result = await testObj.PostAsync(submission);
+            var formFile = GetFileForm();
+            var result = await testObj.PostAsync(formFile);
             using (var db = dbContextFactory.CreateDbContext())
             {
                 var actual = await db.CallRecords.ToListAsync();
@@ -68,22 +66,16 @@ namespace FileUploadAPI.Controllers.Tests
         [TestMethod()]
         public async Task ImportDataHasCorrectNoOfRecords()
         {
+            var formFile = GetFileForm();
             using (var db = dbContextFactory.CreateDbContext())
             {
                 db.CallRecords.RemoveRange(db.CallRecords);
                 await db.SaveChangesAsync();
-                var submission = CreateSubmission();
-                var result = await testObj.PostAsync(submission);
+                var result = await testObj.PostAsync(formFile);
                 var actual = db.CallRecords.Count();
                 Assert.AreEqual(FILE_LINES, actual);
             }
         }
-
-        private Submission CreateSubmission()
-        {
-            return new Submission() { Filename = "techtest_cdr.csv", UserId = 1, Data = GetFileContents(CSV_FILE) };
-        }
-
 
     }
 }

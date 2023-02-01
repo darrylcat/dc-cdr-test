@@ -11,8 +11,8 @@ namespace FileUploadAPI.Model
         [Key()]
         public long Id { get; set; }
         public string Filename { get; set; }
+        public string SavedFilename { get; set; }
         public long UserId { get; set; }
         public DateTime Added { get; set; }
-        public string Data { get; set; }
     }
 }

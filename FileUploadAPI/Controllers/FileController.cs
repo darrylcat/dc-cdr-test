@@ -1,10 +1,12 @@
 ﻿using FileUploadAPI.Extensions;
 using FileUploadAPI.Model;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,25 +15,46 @@ namespace FileUploadAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    // TO-DO: Add [Authorize]
     public class FileController : ControllerBase
     {
         private readonly IDbContextFactory<FileUploadContext> contextFactory;
+        private readonly IWebHostEnvironment hostingEnvironment;
 
-        public FileController(IDbContextFactory<FileUploadContext> contextFactory)
+        public FileController(IDbContextFactory<FileUploadContext> contextFactory, IWebHostEnvironment hostingEnvironment)
         {
             this.contextFactory = contextFactory;
+            this.hostingEnvironment = hostingEnvironment;
         }
 
+        // TO-DO: Add Role Claim Policy
         [HttpPost()]
-        public async Task<Submission> PostAsync(Submission submission)
+        public async Task<Submission> PostAsync(IFormFile formFile)
         {
+            
+            var userId = 1; // assuming userId is one for now - would nomally get from this.User.Claims;
+            string wwwPath = hostingEnvironment.WebRootPath;
+
+            string path = Path.Combine(hostingEnvironment.WebRootPath, "Uploads");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            string fileName = Path.Combine(path, Guid.NewGuid().ToString() + ".csv");
+            using (FileStream stream = new FileStream(fileName, FileMode.Create))
+            {
+                formFile.CopyTo(stream);
+            }
+
+            var submission = new Submission() { Added = DateTime.UtcNow, Filename = formFile.FileName, SavedFilename = fileName, UserId = userId };
             using (var db = contextFactory.CreateDbContext())
             {
                 int count = 0;
                 var result = await db.Submissions.AddAsync(submission);
                 await db.SaveChangesAsync();
-                byte[] data = Convert.FromBase64String(submission.Data);
-                string[] csvRecords = Encoding.UTF8.GetString(data).Split(new string[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                
+                IEnumerable<string> csvRecords = System.IO.File.ReadLines(fileName, Encoding.UTF8);
                 foreach(var record in csvRecords)
                 {
                     count++;
