@@ -30,7 +30,6 @@ namespace ReportingApi.Controllers
             if (subscriberCallsDateRange.From == null) subscriberCallsDateRange.From = DateTime.MinValue;
             if (subscriberCallsDateRange.To == null) subscriberCallsDateRange.To = DateTime.UtcNow;
             var db = contextFactory.CreateDbContext();
-            var count = db.CallRecords.Count();
             return await db.CallRecords.Where(
                 x => x.CallerId == subscriberCallsDateRange.Subscriber &&
                 x.CallDate >= (DateTime)subscriberCallsDateRange.From &&

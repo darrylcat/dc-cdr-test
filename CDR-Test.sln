@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileUploadAPITests", "FileU
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportingApi", "ReportingApi\ReportingApi.csproj", "{FDCE8FD1-2DEF-48E2-9FD8-5AF83FA9A42B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportingApiTests3", "ReportingApiTests3\ReportingApiTests3.csproj", "{346FADB0-73CC-49B2-8D63-DAE2D7923400}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportingApiTests3", "ReportingApiTests3\ReportingApiTests3.csproj", "{346FADB0-73CC-49B2-8D63-DAE2D7923400}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
