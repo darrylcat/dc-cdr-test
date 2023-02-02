@@ -25,7 +25,7 @@ namespace ReportingApi.Controllers
 
         // TO-DO: Policy for check user has priviledges to run List
         [HttpGet()]
-        public async Task<ICollection<SubscriberCallsDTO>> List(SubscriberCallsDateRange subscriberCallsDateRange)
+        public async Task<ICollection<SubscriberCallsDTO>> List([FromQuery]SubscriberCallsDateRange subscriberCallsDateRange)
         {
             if (subscriberCallsDateRange.From == null) subscriberCallsDateRange.From = DateTime.MinValue;
             if (subscriberCallsDateRange.To == null) subscriberCallsDateRange.To = DateTime.UtcNow;
@@ -45,7 +45,7 @@ namespace ReportingApi.Controllers
                     Recipient = x.Recipient,
                     Reference = x.Reference,
                     SubmissionId = x.SubmissionId
-                }).ToListAsync<SubscriberCallsDTO>(); ;
+                }).ToListAsync<SubscriberCallsDTO>();
         }
 
     }
