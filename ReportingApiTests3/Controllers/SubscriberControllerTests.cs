@@ -34,10 +34,13 @@ namespace ReportingApi.Controllers.Tests
             var query = new SubscriberCallsDateRange() { 
                 From = DateTime.UtcNow.AddDays(-365),
                 To = DateTime.UtcNow.AddDays(1),
-                Subscriber = "0123456789"
+                Subscriber = TEST_CALL_ID_1
             };
             var actual = await testObj.List(query);
             Assert.IsInstanceOfType(actual, typeof(ICollection<SubscriberCallsDTO>));
+            Assert.AreEqual(2, actual.Count);
         }
+
+
     }
 }

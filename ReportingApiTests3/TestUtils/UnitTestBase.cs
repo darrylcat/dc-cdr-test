@@ -77,6 +77,7 @@ namespace ReportingApi.TestUtils
                     Reference = "GBR0804505",
                     SubmissionId = submission.Id
                 });
+                await db.SaveChangesAsync();
             }
         }
 
